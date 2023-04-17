@@ -56,20 +56,20 @@ class BinarySearchTree {
   }
 
   find(data) {
-    return searchWithin(this.treeRoot, data);
+    return searchDataWithin(this.treeRoot, data);
     
-    function searchWithin(node, value) {
+    function searchDataWithin(node, value) {
       if (!node) {
         return null;
       }
       
       if (node.data === value) {
-        return node.data;
+        return node;
       }
       
       return value < node.data ?
-        searchWithin(node.left, value) :
-        searchWithin(node.right, value);
+        searchDataWithin(node.left, value) :
+        searchDataWithin(node.right, value);
     }
     // throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
