@@ -15,11 +15,11 @@ const { ListNode } = require('../extensions/list-node.js');
  */
 class Queue {
   head = null;
-  previousNode = null
+  previousNode = null;
+  nextNode = null;
   
   getUnderlyingList() {
-    // return this.head;
-    throw new NotImplementedError('Not implemented');
+    return this.head;
   }
 
   enqueue(value) {
@@ -27,24 +27,21 @@ class Queue {
     if (!this.head) {
       this.head = list;
     } else {
-      list.next = this.head;
-      this.head = list;
+      let l = this.head;
+      while (l.value) {
+        if (l.next === null) {
+          l.next = list;
+          break;
+        }
+        l = l.next;
+      }
     }
   }
 
   dequeue() {
-    let l = this.head;
-    let el;
-    while (l.value) {
-      console.log(l.value);
-      if (l.next === null) {
-        this.previousNode.next = null;
-        el = l.value;
-        break;
-      }
-      this.previousNode = l;
-      l = l.next;
-    }
+    let el = this.head.value;
+    this.nextNode = this.head.next;
+    this.head = this.nextNode;
     return el;
   }
 }
